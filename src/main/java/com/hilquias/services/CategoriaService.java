@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.hilquias.domain.Categoria;
 import com.hilquias.repositories.CategoriaRepository;
+
+import java.util.List;
 import java.util.Optional;
 
 
@@ -19,8 +21,9 @@ public class CategoriaService {
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElse(null);
 		}
-	
-	
+	public Categoria CategoriaAll(){
+		List<Categoria> obj = repo.findAll();
+		return (Categoria) obj;
+	}
 
-	
 }
