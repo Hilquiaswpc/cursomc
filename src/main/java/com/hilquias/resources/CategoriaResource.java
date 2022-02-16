@@ -22,6 +22,7 @@ public class CategoriaResource {
 		return ResponseEntity.ok().body(obj); 
 		 
 	}
+
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public ResponseEntity  <?> findAll() {
 		Categoria obj = service.CategoriaAll();

@@ -1,13 +1,8 @@
 package com.hilquias;
 
-import com.hilquias.domain.Categoria;
-import com.hilquias.domain.Cidade;
-import com.hilquias.domain.Estado;
-import com.hilquias.domain.Produtos;
-import com.hilquias.repositories.CategoriaRepository;
-import com.hilquias.repositories.CidadeRepository;
-import com.hilquias.repositories.EstadoRepository;
-import com.hilquias.repositories.ProdutoRepository;
+import com.hilquias.domain.*;
+import com.hilquias.enums.TipoCliente;
+import com.hilquias.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,6 +25,11 @@ public class CursosbApplication implements CommandLineRunner {
 	@Autowired
 	private CidadeRepository cidadeRepository;
 
+	@Autowired
+	private ClienteRepository clienteRepository;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(CursosbApplication.class, args);
 	}
@@ -50,8 +50,18 @@ public class CursosbApplication implements CommandLineRunner {
 		Cidade c2 = new Cidade(null, "Recife", e2);
 		Cidade c3 = new Cidade(null, "Sao Lourenco da Mata", e2);
 
+		Cliente cli1 = new Cliente(null, "Hilquias Camelo", "hilquias@gmail.com", "07435693421", TipoCliente.PESSOAFISICA);
+
+		cli1.getTelefones().addAll(Arrays.asList("81 98879-9043", "81 99661-1447"));
+
+		Endereco End = new Endereco(null,"Rua Luiz Bezerra de Souza","Casa", "Centro", "54735-815", cli1,c2);
+
 		cat1.getProdutos().addAll(Arrays.asList(p2, p2, p3));
 		cat2.getProdutos().addAll(Arrays.asList(p2));
+
+		cli1.getEnderecos().addAll(Arrays.asList(End));
+
+
 
 		p1.getCategorias().addAll(Arrays.asList(cat1));
 		p2.getCategorias().addAll(Arrays.asList(cat1, cat2));
@@ -62,8 +72,14 @@ public class CursosbApplication implements CommandLineRunner {
 
 		estadoRepository.saveAll(Arrays.asList(e1, e2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
+		
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
+
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+
+		clienteRepository.saveAll(Arrays.asList(cli1));
+
+		enderecoRepository.saveAll(Arrays.asList(End));
 
 	}
 }
