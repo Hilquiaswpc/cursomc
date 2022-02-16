@@ -72,7 +72,7 @@ public class CursosbApplication implements CommandLineRunner {
 
 		estadoRepository.saveAll(Arrays.asList(e1, e2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
-		
+
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
