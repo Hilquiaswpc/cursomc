@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @SpringBootApplication
@@ -37,6 +38,9 @@ public class CursosbApplication implements CommandLineRunner {
 
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursosbApplication.class, args);
@@ -75,6 +79,17 @@ public class CursosbApplication implements CommandLineRunner {
 		Pagamento pag2 = new PagamentoComBoleto(null,EstadoPagamento.PENDENTE,ped2,sdf.parse("20/10/2022 00:00"), null);
 		ped2.setPagamento(pag2);
 
+		itemPedido ip1 = new itemPedido(ped1, p1,0.00, 1,2000.00);
+		itemPedido ip2 = new itemPedido(ped1, p1,0.00, 2, 80.00);
+		itemPedido ip3 = new itemPedido(ped2, p2, 100.00,1, 800.00);
+
+		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+	
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));
+
 		cli1.getPedidos().addAll((Arrays.asList(ped1,ped2)));
 
 		cat1.getProdutos().addAll(Arrays.asList(p2, p2, p3));
@@ -107,7 +122,7 @@ public class CursosbApplication implements CommandLineRunner {
 		pedidoRepository.saveAll(Arrays.asList(ped1, ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pag1, pag2));
 
-
+		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
 
 	}
 }

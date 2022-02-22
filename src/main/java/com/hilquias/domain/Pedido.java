@@ -2,8 +2,7 @@ package com.hilquias.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class Pedido implements Serializable {
@@ -26,6 +25,8 @@ public class Pedido implements Serializable {
     @JoinColumn(name = "endereco_entrega_id")
     private Endereco enderecoDeEntrega;
 
+    @OneToMany(mappedBy = "id.pedido")
+    private Set<itemPedido> itens = new HashSet<>();
 
     public Pedido() {
     }
@@ -35,6 +36,14 @@ public class Pedido implements Serializable {
         this.instante = instante;
         this.cliente = cliente;
         this.enderecoDeEntrega = enderecoDeEntrega;
+    }
+
+    public List<Pedido> getPedidos(){
+        List<Pedido> lista = new ArrayList<>();
+        for(itemPedido x: itens){
+            lista.add(x.getPedido());
+        }
+        return lista;
     }
 
     public Integer getId() {
@@ -75,6 +84,14 @@ public class Pedido implements Serializable {
 
     public void setEnderecoDeEntrega(Endereco enderecoDeEntrega) {
         this.enderecoDeEntrega = enderecoDeEntrega;
+    }
+
+    public Set<itemPedido> getItens(){
+        return itens;
+    }
+
+    public void setItens(Set<itemPedido> itens){
+        this.itens = itens;
     }
 
     @Override
