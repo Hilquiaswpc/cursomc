@@ -1,11 +1,11 @@
 package com.hilquias.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hilquias.enums.EstadoPagamento;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
+
 
 
 @Entity
@@ -17,7 +17,7 @@ public abstract class Pagamento implements Serializable {
 	private Integer id;
 	private Integer estado;
 
-	@JsonBackReference
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name="pedido_id")
 	@MapsId
