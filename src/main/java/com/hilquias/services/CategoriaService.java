@@ -14,24 +14,23 @@ import java.util.Optional;
 
 @Service
 public class CategoriaService {
-	
 	@Autowired
 	private CategoriaRepository repo;
-	 
-	public Categoria buscar(Integer id) {
+
+	public Categoria find(Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
-	public Categoria CategoriaAll(){
-		List<Categoria> obj = repo.findAll();
-		return (Categoria) obj;
-	}
-	public Categoria Insert(Categoria obj){
+
+	public Categoria insert(Categoria obj) {
 		obj.setId(null);
 		return repo.save(obj);
+	}
 
-
+	public Categoria update(Categoria obj) {
+		find(obj.getId());
+		return repo.save(obj);
 	}
 
 }
