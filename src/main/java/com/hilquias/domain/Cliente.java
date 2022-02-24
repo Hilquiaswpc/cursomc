@@ -1,5 +1,6 @@
 package com.hilquias.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hilquias.enums.TipoCliente;
 
@@ -20,6 +21,7 @@ public class Cliente  implements Serializable {
     private String cpfOuCNPJ;
     private Integer tipo;
 
+
     @JsonManagedReference
     @OneToMany(mappedBy="cliente")
     private List<Endereco> enderecos = new ArrayList<>();
@@ -28,6 +30,7 @@ public class Cliente  implements Serializable {
     @CollectionTable(name="TELEFONE")
     private Set<String> telefones = new HashSet<>();
 
+    @JsonBackReference
     @OneToMany(mappedBy ="cliente")
     private List<Pedido> pedidos = new ArrayList<>();
 
