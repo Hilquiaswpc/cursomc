@@ -23,14 +23,14 @@ public class Categoria implements Serializable {
 
 	@JsonManagedReference
 	@ManyToMany(mappedBy ="categorias")
-	private List<Produtos> produtos = new ArrayList<>();
+	private List<Produto> produtos = new ArrayList<>();
 
 	
-	public List<Produtos> getProdutos() {
+	public List<Produto> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(List<Produtos> produtos) {
+	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
 	}
 

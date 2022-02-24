@@ -3,7 +3,7 @@ package com.hilquias.domain;
 import com.hilquias.enums.EstadoPagamento;
 
 import javax.persistence.Entity;
-import java.util.Date;
+
 
 @Entity
 public class PagamentoComCartao extends Pagamento{
