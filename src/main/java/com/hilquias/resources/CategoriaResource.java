@@ -1,6 +1,9 @@
 package com.hilquias.resources;
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import com.hilquias.CategoriaDTO;
 import com.hilquias.domain.Categoria;
 import com.hilquias.services.CategoriaService;
 
@@ -50,5 +53,11 @@ public class CategoriaResource {
 
 
 	}
-
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> list = service.findAll ();
+		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
+	}
+	
 }

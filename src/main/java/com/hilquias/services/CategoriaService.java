@@ -44,5 +44,8 @@ public class CategoriaService {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possue produtos  ");
 		}
 	}
+	public List<Categoria> findAll(){
+		return repo.findAll();
+	}
 
 }
