@@ -1,5 +1,8 @@
 package com.hilquias.services;
 
+import com.hilquias.domain.Cliente;
+import com.hilquias.dto.CategoriaDTO;
+import com.hilquias.dto.ClienteDTO;
 import com.hilquias.services.exceptions.DataIntegrityException;
 import com.hilquias.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +58,11 @@ public class CategoriaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+	public Categoria fromDTO(CategoriaDTO objDTO){
+		return new Categoria(objDTO.getId(), objDTO.getNome());
+
+		//throw new UnsupportedOperationException();
+	}
+
 
 }
