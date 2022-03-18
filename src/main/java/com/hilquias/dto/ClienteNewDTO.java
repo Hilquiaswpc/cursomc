@@ -1,26 +1,44 @@
 package com.hilquias.dto;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.hilquias.services.validation.ClienteInsert;
+import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
+@ClienteInsert
 public class ClienteNewDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @NotEmpty(message = "Preenchimento Obrigatório")
+    @Length(min = 5, max = 120,message = "O tamanho do nome tem que ser obrigatoriamente entre 5 e 120 caracter")
     private String nome;
+
+    @NotEmpty(message = "Preenchimento do email é obrigatório")
+    @Email(message = "Email inválido")
     private String email;
+
+    @NotEmpty(message = "Preenchimento do CPF ou CNPJ é brigatório")
     private String cpfOuCNPJ;
+
     private Integer tipo;
 
+    @NotEmpty(message = "Preenchimento do logradouro é brigatório")
     private String logradouro;
+
+    @NotEmpty(message = "Preenchimento do numero é obrigatório")
     private String numero;
+
     private String complemento;
     private String bairro;
+
+    @NotEmpty(message = "Preenchimento do CEP é obrigatório")
     private String cep;
 
+    @NotEmpty(message = "Preenchimento Obrigatório")
     private String telefone1;
+
     private String telefone2;
     private String telefone3;
 
