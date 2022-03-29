@@ -1,5 +1,8 @@
 package com.hilquias.services;
 
+import com.hilquias.domain.Cliente;
+import com.hilquias.dto.CategoriaDTO;
+import com.hilquias.dto.ClienteDTO;
 import com.hilquias.services.exceptions.DataIntegrityException;
 import com.hilquias.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +38,13 @@ public class CategoriaService {
 	}
 
 	public Categoria update(Categoria obj) {
-		find(obj.getId());
-		return repo.save(obj);
+		Categoria newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return repo.save(newObj);
+	}
+
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
 	}
 	public void delete(Integer id){
 		find(id);
@@ -54,6 +62,12 @@ public class CategoriaService {
 	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+
+	public Categoria fromDTO(CategoriaDTO objDTO){
+		return new Categoria(objDTO.getId(), objDTO.getNome());
+
+		//throw new UnsupportedOperationException();
 	}
 
 }

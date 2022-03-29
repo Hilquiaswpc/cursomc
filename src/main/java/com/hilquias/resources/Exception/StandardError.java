@@ -2,14 +2,14 @@ package com.hilquias.resources.Exception;
 
 import java.io.Serializable;
 
-public class StandarError implements Serializable {
+public class StandardError implements Serializable {
     private static  final  long serialVersionUID = 1l;
 
     private Integer status;
     private String msg;
     private Long timeStamp;
 
-    public StandarError(Integer status, String msg, Long timeStamp) {
+    public StandardError(Integer status, String msg, Long timeStamp) {
         this.status = status;
         this.msg = msg;
         this.timeStamp = timeStamp;
