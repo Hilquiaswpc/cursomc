@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -19,6 +20,9 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping(value="/categorias")
 public class CategoriaResource {
+
+
+
 
 	@Autowired
 	private CategoriaService service;
