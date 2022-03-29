@@ -63,11 +63,11 @@ public class CategoriaService {
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
 	}
+
 	public Categoria fromDTO(CategoriaDTO objDTO){
 		return new Categoria(objDTO.getId(), objDTO.getNome());
 
 		//throw new UnsupportedOperationException();
 	}
-
 
 }
